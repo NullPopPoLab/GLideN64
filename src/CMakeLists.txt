@@ -287,8 +287,8 @@ endif(WIN32)
 
 if(SDL)
   include(FindPkgConfig)
-  pkg_check_modules(SDL REQUIRED sdl)
-  include_directories(${SDL_INCLUDE_DIRS})
+  pkg_check_modules(SDL REQUIRED sdl2)
+  include_directories(${SDL2_INCLUDE_DIRS})
   add_definitions(
 	-DUSE_SDL
   )
@@ -462,6 +462,7 @@ if(GL_PROFILE)
     )
 endif(GL_PROFILE)
 
+add_definitions(-DEGL_NO_X11)
 if(EGL)
   add_definitions(
     -DEGL
@@ -510,9 +511,9 @@ if( CMAKE_BUILD_TYPE STREQUAL "Debug")
 
   if(SDL)
         if (NOHQ)
-	  target_link_libraries(${GLideN64_DLL_NAME} PRIVATE ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osald )
+	  target_link_libraries(${GLideN64_DLL_NAME} PRIVATE ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osald )
 	else (NOHQ)
-	  target_link_libraries(${GLideN64_DLL_NAME} PRIVATE ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osald GLideNHQd )
+	  target_link_libraries(${GLideN64_DLL_NAME} PRIVATE ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osald GLideNHQd )
 	endif (NOHQ)
   else(SDL)
 	if (NOHQ)
@@ -542,9 +543,9 @@ if( CMAKE_BUILD_TYPE STREQUAL "Release")
 
   if(SDL)
 	if (NOHQ)
-	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal )
+	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal )
 	else (NOHQ)
-	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal GLideNHQ )
+	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal GLideNHQ )
 	endif (NOHQ)
   else(SDL)
 	if (NOHQ)
